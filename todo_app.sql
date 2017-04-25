@@ -23,8 +23,7 @@ DROP completed;
 
 --Add completed_at column to tasks
 ALTER TABLE tasks
-ADD completed_at TIMESTAMP NULL
-DEFAULT NULL;
+ADD completed_at TIMESTAMP NULL DEFAULT NULL;
 
 --Set any existing tasks updated_at which are null to 0
 UPDATE tasks
@@ -42,3 +41,13 @@ ALTER COLUMN updated_at DROP DEFAULT;
 --Change default for updated_at
 ALTER TABLE tasks
 ALTER COLUMN updated_at SET DEFAULT NOW();
+
+INSERT INTO tasks
+VALUES (DEFAULT, 'Study SQL', 'Complete this exercise', DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO tasks (title, description)
+VALUES ('Study PostgreSQL', 'Read all the documentation');
+
+SELECT title
+FROM tasks
+WHERE completed_at IS NULL;
