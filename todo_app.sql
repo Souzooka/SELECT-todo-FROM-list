@@ -42,20 +42,41 @@ ALTER COLUMN updated_at DROP DEFAULT;
 ALTER TABLE tasks
 ALTER COLUMN updated_at SET DEFAULT NOW();
 
+--Insert new row without value selectors
 INSERT INTO tasks
 VALUES (DEFAULT, 'Study SQL', 'Complete this exercise', DEFAULT, DEFAULT, DEFAULT);
 
+--Insert new row with value selectors
 INSERT INTO tasks (title, description)
 VALUES ('Study PostgreSQL', 'Read all the documentation');
 
+--Get uncompleted tasks' titles
 SELECT title
 FROM tasks
 WHERE completed_at IS NULL;
 
+--Complete 'Study SQL'
 UPDATE tasks
 SET completed_at = NOW()
 WHERE title = 'Study SQL';
 
+--Get all tasks by descending creation date
 SELECT *
 FROM tasks
 ORDER BY created_at DESC;
+
+--Create a new task
+INSERT INTO tasks(title, description)
+VALUES ('mistake 1', 'a test entry');
+
+--Create a new task
+INSERT INTO tasks(title, description)
+VALUES ('mistake 2', 'another test entry');
+
+--Create a new task
+INSERT INTO tasks(title, description)
+VALUES ('third mistake', 'another test entry');
+
+SELECT title
+FROM tasks
+WHERE title LIKE '%mistake%';
