@@ -77,6 +77,27 @@ VALUES ('mistake 2', 'another test entry');
 INSERT INTO tasks(title, description)
 VALUES ('third mistake', 'another test entry');
 
+--LIKE searches with regex ('%' instead  of '/' to find a text match)
 SELECT title
 FROM tasks
 WHERE title LIKE '%mistake%';
+
+--Delete mistake 1
+DELETE
+FROM tasks
+WHERE title = 'mistake 1';
+
+--Show remaining mistakes
+SELECT title, description
+FROM tasks
+WHERE title LIKE '%mistake%';
+
+--Delete remaining mistakes
+DELETE
+FROM tasks
+WHERE title LIKE '%mistake%';
+
+--Show remaining entries by title in ascending order
+SELECT *
+FROM tasks
+ORDER BY title ASC;
