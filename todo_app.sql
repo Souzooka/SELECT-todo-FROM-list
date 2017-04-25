@@ -1,7 +1,16 @@
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
-DROP USER IF EXISTS michael;
-CREATE USER michael WITH ENCRYPTED PASSWORD 'stonebreaker';
+-- DROP USER IF EXISTS michael;
+-- CREATE USER michael WITH ENCRYPTED PASSWORD 'stonebreaker';
 
-DROP DATABASE IF EXISTS todo_app;
-CREATE DATABASE todo_app;
+-- DROP DATABASE IF EXISTS todo_app;
+-- CREATE DATABASE todo_app;
+
+DROP TABLE IF EXISTS tasks;
+CREATE TABLE tasks (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description TEXT NULL,
+  created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NULL,
+  completed BOOLEAN NOT NULL);
